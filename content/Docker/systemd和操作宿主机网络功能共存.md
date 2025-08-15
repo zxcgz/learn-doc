@@ -103,7 +103,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do \
 # 设置默认命令
 CMD ["/bin/bash"]
 
-```
+``` 
 
 2.  构建命令
     

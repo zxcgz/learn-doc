@@ -1,0 +1,57 @@
+site_name: My Notes
+site_url: https://zxcgz.github.io/learn-obsidian/
+repo_url: https://github.com/zxcgz/learn-obsidian
+theme:
+  name: material
+  features:
+    - navigation.expand
+    - navigation.instant
+    - navigation.tracking
+    - content.code.copy
+  language: zh
+
+# 你的内容目录
+docs_dir: docs
+
+# 支持 Obsidian 常见语法
+plugins:
+  - search
+  - roamlinks   # 支持 [[Wiki链接]]
+  - glightbox   # 图片灯箱浏览
+  - exclude:
+      glob:
+        - ".obsidian/**"
+        - ".github/**"
+        - "site/**"
+        - "mkdocs.yml"
+        - ".git/**"
+
+
+markdown_extensions:
+  - admonition              # 支持 !!! note 这样的块
+  - md_in_html
+  - tables
+  - footnotes
+  - def_list
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.details        # 折叠
+  - pymdownx.superfences    # 代码块增强
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+nav:
+  - 首页: index.md
+  - 文章:
+      - 示例: posts/xxx.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/zxcgz
+

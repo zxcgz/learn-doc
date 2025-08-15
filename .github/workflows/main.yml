@@ -1,8 +1,8 @@
-name: Build & Deploy Quartz (site-repo)
+name: Build & Deploy Quartz (site-repo, v4 branch)
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "v4" ]   # 只监听 v4
   workflow_dispatch:
 
 permissions:
@@ -18,20 +18,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - name: Checkout site repo (v4)
+        uses: actions/checkout@v4
         with:
-          node-version: '22'
+          ref: v4
 
-      - run: npm i -g npm@^10.9.2
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
 
-      - name: Install deps & build
+      - name: Ensure npm >= 10.9.2
+        run: npm i -g npm@^10.9.2
+
+      - name: Install deps & build Quartz
         run: |
           npm ci || npm i
-          npx quartz build
+          npx quartz build   # 输出在 ./public
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
@@ -42,5 +48,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4

@@ -1,86 +1,123 @@
-// quartz.config.ts（站点仓根）
+// quartz.config.ts (site repo, branch v4)
 import type { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
+/**
+ * Quartz 4 Configuration
+ * Docs: https://quartz.jzhao.xyz/configuration
+ */
 const config: QuartzConfig = {
   configuration: {
     // —— 站点元信息 ——
     pageTitle: "我的笔记",
     pageTitleSuffix: "",
-    locale: "zh-CN",
     enableSPA: true,
     enablePopovers: true,
 
-    // —— GitHub Pages 路径 —— 无自定义域名时必须写成 “用户名.github.io/站点仓库名”，不带 http(s)
-    // 例如：zxcgz.github.io/learn-doc   （请改成你的站点仓名字）
+    // 若你启用了 Plausible，这里建议补上域名（不需要协议）
+    // analytics: { provider: "plausible", domain: "zxcgz.github.io" },
+    // 没用就先关掉，避免不必要的外链加载
+    // ↓ 如果你确实要用，请把上面一行打开，并删除下面这一行：
+    analytics: undefined as any,
+
+    // 本地化
+    locale: "zh-CN",
+
+    // GitHub Pages（无自定义域名）必须是“用户名.github.io/仓库名”
     baseUrl: "zxcgz.github.io/learn-doc",
 
-    // —— 主题（颜色/字体）—— 这些键名要完整 —— 
-    theme: {
-      cdnCaching: true,
-      typography: {
-        header: "Inter",
-        body: "Inter",
-        code: "JetBrains Mono",
-        title: "Inter",
-      },
-      colors: {
-        light: "#ffffff",
-        lightgray: "#e5e7eb",
-        gray: "#9ca3af",
-        darkgray: "#374151",
-        dark: "#111827",
-        secondary: "#4f46e5",
-        tertiary: "#7c3aed",
-        highlight: "#fff7cc",
-        textHighlight: "#fff2ab",
-      },
-    },
+    // 建议默认用“按修改时间”排序
+    defaultDateType: "modified",
 
-    // —— 构建时忽略 ——（这里是站点仓自己的忽略，不影响内容仓）
+    // —— 索引/构建忽略 ——（用通配符更稳）
     ignorePatterns: [
+      "**/.obsidian/**",
+      "**/.github/**",
+      "**/node_modules/**",
       "**/_quartz/**",
       "**/.quartz/**",
       "**/site/**",
-      "**/node_modules/**",
-      "**/.github/**",
-      "**/.obsidian/**",
+      "**/private/**",
+      "**/templates/**",
     ],
 
-    // // （可选）统计
-    // analytics: { provider: "google", tagId: "G-XXXXXXX" },
+    // —— 主题（Quartz v4: colors 分为 lightMode / darkMode）——
+    theme: {
+      fontOrigin: "googleFonts",
+      cdnCaching: true,
+      typography: {
+        header: "Schibsted Grotesk",
+        body: "Source Sans Pro",
+        code: "IBM Plex Mono",
+        title: "Schibsted Grotesk",
+      },
+      colors: {
+        lightMode: {
+          light: "#faf8f8",
+          lightgray: "#e5e5e5",
+          gray: "#b8b8b8",
+          darkgray: "#4e4e4e",
+          dark: "#2b2b2b",
+          secondary: "#284b63",
+          tertiary: "#84a59d",
+          highlight: "rgba(143, 159, 169, 0.15)",
+          textHighlight: "#fff23688",
+        },
+        darkMode: {
+          light: "#161618",
+          lightgray: "#393639",
+          gray: "#646464",
+          darkgray: "#d4d4d4",
+          dark: "#ebebec",
+          secondary: "#7b97aa",
+          tertiary: "#84a59d",
+          highlight: "rgba(143, 159, 169, 0.15)",
+          textHighlight: "#b3aa0288",
+        },
+      },
+    },
   },
 
   plugins: {
-    // —— 内容变换（按需增减） ——
+    // —— 内容转换流程（顺序基本保持你原来的）——
     transformers: [
       Plugin.FrontMatter(),
-      Plugin.ObsidianFlavoredMarkdown(),   // 支持 Obsidian 语法
-      Plugin.Description(),
-      Plugin.TableOfContents(),
+      Plugin.CreatedModifiedDate({
+        priority: ["frontmatter", "git", "filesystem"],
+      }),
+      Plugin.SyntaxHighlighting({
+        theme: { light: "github-light", dark: "github-dark" },
+        keepBackground: false,
+      }),
+      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.SyntaxHighlighting(),         // 代码高亮（保持默认主题最稳）
+      Plugin.TableOfContents(),
+      Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
+      Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
 
-    // —— 过滤（默认移除 draft） ——
+    // —— 过滤器（默认移除 draft）——
     filters: [Plugin.RemoveDrafts()],
-    // filters: [Plugin.ExplicitPublish()],  // 若想“仅显式发布”的策略可改为这一行
 
-    // —— 输出发射器（决定生成哪些页面/资源） ——
+    // —— 输出（发射器）——
+    // 保留你的发射器组合；为兼容 Search 增加 ContentIndex（你已开启）
     emitters: [
-      Plugin.Assets(),              // 复制 content 里的附件到 public
-      Plugin.Static(),              // 复制 quartz/static/** 到 public/static/**
-      Plugin.ContentIndex(),        // 搜索索引（Search 组件需要）
-      Plugin.ContentPage(),         // 单篇内容页
-      Plugin.TagPage(),             // 标签列表页
-      Plugin.FolderPage(),          // 目录列表页
-      Plugin.NotFoundPage(),        // 404
-      Plugin.ComponentResources(),  // 样式与脚本（依赖 theme.colors）
-      Plugin.Favicon(),             // 用 quartz/static/icon.png 生成 favicon
+      Plugin.Assets(),               // content 内的附件
+      Plugin.Static(),               // quartz/static/** → /static/**
+      Plugin.ComponentResources(),   // 样式/脚本（依赖 theme.colors）
+      Plugin.ContentPage(),
+      Plugin.FolderPage(),
+      Plugin.TagPage(),
+      Plugin.ContentIndex({
+        enableSiteMap: true,
+        enableRSS: true,
+      }),
+      Plugin.Favicon(),              // 需要 quartz/static/icon.png
+      Plugin.NotFoundPage(),
 
-      // （可选）如果你用自定义域名，可以同时放一个 CNAME 文本文件在 quartz/static/CNAME
-      // 或使用插件：Plugin.CNAME({ domain: "notes.example.com" }),
+      // ⚠️ 生成社交图会显著拉长构建时间，如非必要可注释掉
+      // Plugin.CustomOgImages(),
     ],
   },
 }

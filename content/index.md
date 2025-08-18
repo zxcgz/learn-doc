@@ -1,6 +1,4 @@
-## title: Home aliases: ["/", "/home"] description: Android / Java 后端 / Docker / Go / Python / Linux 的工程实践记录 enableToc: false
-
-# 👋 你好，我是 Xchao
+# 👋 你好，我是 zhxchao
 
 Android 开发出身，也做过 Java 服务端；会用 Docker，能写 Go 和 Python，熟悉 Linux 基本命令。这里记录我的工程实践与问题复盘，偏实战、少废话。
 
@@ -37,9 +35,6 @@ Android 开发出身，也做过 Java 服务端；会用 Docker，能写 Go 和 
 - Android 启动与流畅度优化
     
 
-## 随手片段
 
-# 一条命令开本地静态服务（调试静态资源）  
-python3 -m http.server 8000
 
-> 联系：[your_email@example.com](mailto%5C:your_email@example.com)\ 许可：文字 CC BY-SA 4.0；代码 MIT
+> 联系：[zhxchao@gmail.com](mailto%5C:zhxchao922@gmail.com)\ 许可：文字 CC BY-SA 4.0；代码 MIT

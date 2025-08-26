@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout site repo (v4)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: v4
 
@@ -37,7 +37,7 @@ jobs:
           npx quartz build   # 输出在 ./public
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: public
 

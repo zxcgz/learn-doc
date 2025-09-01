@@ -37,4 +37,7 @@ Android 开发出身，也做过 Java 服务端；会用 Docker，能写 Go 和 
 
 
 
-> 联系：[zhxchao@gmail.com](mailto%5C:zhxchao922@gmail.com)\ 许可：文字 CC BY-SA 4.0；代码 MIT
+> 联系：[zhxchao@gmail.com](mailto:zhxchao922@gmail.com)
+> 
+
+许可：文字 CC BY-SA 4.0；代码 MIT

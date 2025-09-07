@@ -1,0 +1,40 @@
+# ---------- 统一文本类换行符为 LF ----------
+# 典型文本/配置/代码/Obsidian 相关文件
+*.md     text eol=lf
+*.mdx    text eol=lf
+*.markdown text eol=lf
+*.txt    text eol=lf
+*.csv    text eol=lf
+*.json   text eol=lf
+*.json5  text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.toml   text eol=lf
+*.css    text eol=lf
+*.js     text eol=lf
+*.ts     text eol=lf
+*.jsx    text eol=lf
+*.tsx    text eol=lf
+*.svg    text eol=lf        # SVG 是文本，保留可读 diff
+*.canvas text eol=lf        # Obsidian Canvas（JSON）
+
+# ---------- 二进制文件，避免冲突标记插入 ----------
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.pdf  binary
+*.zip  binary
+*.7z   binary
+*.mp3  binary
+*.mp4  binary
+*.mov  binary
+*.wav  binary
+*.ogg  binary
+*.apk  binary
+*.jar  binary
+
+# （可选）如果你决定永远让工作区文件走“本机为准”，可在此处设定自动策略：
+# .obsidian/workspace.json         merge=keepOurs
+# .obsidian/workspace-mobile.json  merge=keepOurs

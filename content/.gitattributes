@@ -15,8 +15,8 @@
 *.ts     text eol=lf
 *.jsx    text eol=lf
 *.tsx    text eol=lf
-*.svg    text eol=lf        # SVG 是文本，保留可读 diff
-*.canvas text eol=lf        # Obsidian Canvas（JSON）
+*.svg    text eol=lf        
+*.canvas text eol=lf        
 
 # ---------- 二进制文件，避免冲突标记插入 ----------
 *.png  binary

@@ -1,0 +1,408 @@
+{
+  "name": "推送写日志消息到钉钉（考虑节假日版）",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c0493409-cdfd-4ce6-a7f6-2374757d3eaf",
+              "name": "cron",
+              "value": "0 18 * * *",
+              "type": "string"
+            },
+            {
+              "id": "8c1aad9e-a9c9-4459-a5e3-2399e6908b66",
+              "name": "cron_message",
+              "value": "【日志提醒】请在 18:00 前提交今日工作日志。",
+              "type": "string"
+            },
+            {
+              "id": "b300c944-b044-439b-b052-5348b1f5f73f",
+              "name": "dingtalk_webhook_url",
+              "value": "根据自己的情况修改",
+              "type": "string"
+            },
+            {
+              "id": "f80aaaac-b83a-4fe5-b28b-8ea5563f3276",
+              "name": "dingtalk_secret",
+              "value": "根据自己的情况修改",
+              "type": "string"
+            },
+            {
+              "id": "6efe8085-c3f7-4d78-9ea1-1def9594a4ed",
+              "name": "timezone",
+              "value": "Asia/Shanghai",
+              "type": "string"
+            },
+            {
+              "id": "e0da7651-783d-4940-859d-483cec1d1ccc",
+              "name": "link_title",
+              "value": "提交日志",
+              "type": "string"
+            },
+            {
+              "id": "b6b7139a-38d6-4bb9-8ec9-765d0830a810",
+              "name": "link_url",
+              "value": "https://www.h3yun.com/application/A45fa7bc7e4344ef1a5a3402c36243290/Sklilnqi1ak5cza4y9sv6z1jg6",
+              "type": "string"
+            },
+            {
+              "id": "11111111-1111-1111-1111-111111111111",
+              "name": "markdown",
+              "value": "#### ${random_emoji} 日志提醒 · ${date}（${weekday}）\n    > ${random_quote}\n    - ${base}\n    - 快捷入口： [${link_title}](${link_url})\n    > Tip：${random_tip}",
+              "type": "string"
+            },
+            {
+              "id": "2a878ad4-622a-4d7c-94a7-47e4bddf549c",
+              "name": "style",
+              "value": "markdown",
+              "type": "string"
+            },
+            {
+              "id": "39f227a0-5196-41de-84ce-a173afd76a8c",
+              "name": "md_title",
+              "value": "提交日志提醒",
+              "type": "string"
+            },
+            {
+              "id": "7ea0cd18-2568-4cab-9b18-4d541029047c",
+              "name": "link_title",
+              "value": "提交日志",
+              "type": "string"
+            },
+            {
+              "id": "94a9c2c3-40cc-4490-b159-83f9749d37c8",
+              "name": "link_url",
+              "value": "https://www.h3yun.com/application/A45fa7bc7e4344ef1a5a3402c36243290/Sklilnqi1ak5cza4y9sv6z1jg6",
+              "type": "string"
+            },
+            {
+              "id": "b98afa78-de9c-4d86-9f59-55c27914abf2",
+              "name": "at_all",
+              "value": true,
+              "type": "string"
+            },
+            {
+              "id": "24959362-9e17-419e-8c7f-4e97c27fc6cf",
+              "name": "random_emojis_json",
+              "value": "[\"💡\",\"📝\",\"✨\",\"⏰\",\"✅\",\"📌\",\"🚀\"]",
+              "type": "string"
+            },
+            {
+              "id": "44ca0cd7-ef27-46c0-8df6-d1474c576440",
+              "name": "random_quotes_json",
+              "value": "[\"再小的进步也是进步。\",\"把今天做到最好，明天自然会更好。\",\"先完成，再完美。\",\"复盘能让每一步都更值钱。\",\"专注当下这一件事。\"]",
+              "type": "string"
+            },
+            {
+              "id": "f3c9519a-ed3a-4697-9b32-d0b8987a32d0",
+              "name": "random_tips_json",
+              "value": "[\"用要点和小标题写日志，可读性更好。\",\"同步 1 张关键截图，信息量翻倍。\",\"记录 1 条风险+应对，让复盘更顺畅。\",\"尽量量化结果：进度/耗时/影响。\"]",
+              "type": "string"
+            },
+            {
+              "id": "957e14b5-ecd5-4260-b88a-8ea0a2dbe35b",
+              "name": "random_mode",
+              "value": "run",
+              "type": "string"
+            },
+            {
+              "id": "08318e5a-764c-4dd9-b9d4-224585d503c1",
+              "name": "calendar_cache_ttl_hours",
+              "value": "300",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -848,
+        208
+      ],
+      "id": "3d273996-3a33-4b65-8d6a-98a88b9ccb98",
+      "name": "Cron: Config (Set)"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1072,
+        208
+      ],
+      "id": "12200292-18ef-48ad-8616-281e6d767147",
+      "name": "Cron Ticker (Every Minute",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Cron Match? (Function) —— OR 语义 + 透传 + 不拦截（仅输出 cron_ok）\n// 读取：cron（5或6段都行）、timezone（如 Asia/Tokyo）\n// 输出：原样透传所有字段 + { cron_ok, now_debug, cron_parts }\n\nfunction nowPartsInTZ(tz) {\n  const fmt = new Intl.DateTimeFormat('en-GB', {\n    timeZone: tz, weekday:'short',\n    year:'numeric', month:'2-digit', day:'2-digit',\n    hour:'2-digit', minute:'2-digit', second:'2-digit',\n    hour12:false\n  });\n  const p = fmt.formatToParts(new Date());\n  const get = (t) => parseInt(p.find(x => x.type === t).value, 10);\n  const wShort = p.find(x => x.type === 'weekday').value; // Sun..Sat\n  const dowMap = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};\n  return {\n    sec: get('second'),\n    min: get('minute'),\n    hour: get('hour'),\n    dom: get('day'),\n    mon: get('month'),\n    dow: dowMap[wShort],\n    wShort\n  };\n}\n\nfunction normalizeDowExpr(expr) {\n  // 支持英文星期：MON..SUN（不区分大小写）\n  const map = {SUN:0,MON:1,TUE:2,WED:3,THU:4,FRI:5,SAT:6};\n  return String(expr).toUpperCase().replace(/[A-Z]{3}/g, (m) => {\n    if (map.hasOwnProperty(m)) return String(map[m]);\n    return m;\n  }).replace(/\\b7\\b/g, '0'); // 7当周日\n}\n\nfunction matchPart(val, expr) {\n  const s = String(expr).trim();\n  if (s === '*') return true;\n  const tokens = s.split(',');\n  for (const t of tokens) {\n    if (t === '*') return true;\n    if (t.startsWith('*/')) {\n      const step = parseInt(t.slice(2), 10) || 1;\n      if (val % step === 0) return true;\n      continue;\n    }\n    if (t.includes('-')) {\n      const [a, b] = t.split('-').map(n => parseInt(n, 10));\n      if (val >= a && val <= b) return true;\n      continue;\n    }\n    if (val === parseInt(t, 10)) return true;\n  }\n  return false;\n}\n\nconst cron = String($json.cron || '').trim();\nconst tz = String($json.timezone || 'Asia/Tokyo');\n\nlet cron_ok = true; // 未配置 cron 时视为放行\nlet parts_used = null;\nlet now_dbg = null;\n\nif (cron) {\n  const parts = cron.split(/\\s+/).filter(Boolean);\n  const hasSec = parts.length === 6;\n  if (!(parts.length === 5 || parts.length === 6)) {\n    cron_ok = false;\n  } else {\n    const [secE, minE, hourE, domE, monE, dowE] = hasSec\n      ? [parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]]\n      : ['*', parts[0], parts[1], parts[2], parts[3], parts[4]];\n\n    const now = nowPartsInTZ(tz);\n    now_dbg = { tz, ...now };\n\n    const secOk  = matchPart(now.sec,  secE);\n    const minOk  = matchPart(now.min,  minE);\n    const hourOk = matchPart(now.hour, hourE);\n    const monOk  = matchPart(now.mon,  monE);\n\n    // ---- 关键：DOM/DOW 的 OR 语义 ----\n    const domStar = String(domE).trim() === '*';\n    const dowExpr = normalizeDowExpr(dowE);\n    const dowStar = String(dowExpr).trim() === '*';\n    const domOk   = matchPart(now.dom, domE);\n    const dowOk   = matchPart(now.dow, dowExpr);\n\n    // Vixie cron 语义：\n    // 若 DOM 与 DOW 同时不是 * → 二者采用 OR（任一为真即命中）\n    // 否则（其中一个是 *） → 要求另一个匹配\n    let dayOk;\n    if (!domStar && !dowStar) dayOk = (domOk || dowOk);\n    else if (!domStar)        dayOk = domOk;\n    else if (!dowStar)        dayOk = dowOk;\n    else                      dayOk = true;\n\n    cron_ok = secOk && minOk && hourOk && monOk && dayOk;\n    parts_used = { secE, minE, hourE, domE, monE, dowE: dowExpr };\n  }\n}\n\nreturn [\n  {\n    json: {\n      ...$json,         // 透传所有上游字段\n      cron_ok,\n      now_debug: now_dbg,\n      cron_parts: parts_used\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        544,
+        224
+      ],
+      "id": "641f8ce1-0a2f-42a0-b296-65fd06399d21",
+      "name": "Cron Match? (Function)"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "={{$json[\"dingtalk_webhook\"]}}",
+        "jsonParameters": true,
+        "options": {
+          "timeout": 15000
+        },
+        "bodyParametersJson": "={{$json[\"payload\"]}}"
+      },
+      "name": "HTTP → DingTalk1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1136,
+        224
+      ],
+      "id": "dc0d27a9-f54d-4254-8b14-ec0b24c57b71"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d5ca1acb-475b-442d-a66f-ab9941079359",
+              "leftValue": "={{$json.need_fetch}}",
+              "rightValue": "=need_fetch",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -400,
+        208
+      ],
+      "id": "d089e8dd-350a-494e-8242-17642a349acb",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "/**\n * Cron Gate (Function) — 顶层拦截\n * 读取上游 Set 的 $json.cron / $json.timezone\n * 5 或 6 段 cron；DOM/DOW 采用 OR 语义；支持 MON..SUN 名称；支持 步长、范围、列表。\n * 匹配失败 → return [] 直接阻断后续节点。\n */\n\nfunction matchPart(v, expr) {\n  const s = String(expr || '').trim();\n  if (s === '*') return true;\n  const items = s.split(',');\n  for (let i = 0; i < items.length; i++) {\n    const t = items[i].trim();\n    if (t === '*') return true;\n    if (t.startsWith('*/')) { const step = parseInt(t.slice(2), 10) || 1; if ((v % step) === 0) return true; continue; }\n    if (t.includes('-')) { const ab = t.split('-'); const a = parseInt(ab[0],10), b = parseInt(ab[1],10); if (v >= a && v <= b) return true; continue; }\n    if (v === parseInt(t,10)) return true;\n  }\n  return false;\n}\n\nfunction cronMatchNow(cron, tz) {\n  const tokens = String(cron || '').trim().split(/\\s+/).filter(Boolean);\n  if (!(tokens.length === 5 || tokens.length === 6)) return false;\n\n  // 当前时间（按 tz）\n  const fmt = new Intl.DateTimeFormat('en-GB', {\n    timeZone: tz || 'Asia/Shanghai',\n    weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit',\n    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false\n  });\n  const parts = fmt.formatToParts(new Date());\n  const get = (t) => parseInt(parts.find(x => x.type === t).value, 10);\n  const sec  = get('second');\n  const min  = get('minute');\n  const hour = get('hour');\n  const day  = get('day');\n  const mon  = get('month');\n  const mapW = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };\n  const dow  = mapW[parts.find(x => x.type === 'weekday').value];\n\n  const hasSec = tokens.length === 6;\n  const [secE, minE, hourE, domE, monE, dowE0] = hasSec ? tokens : ['*', tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]];\n\n  const dowE = String(dowE0).toUpperCase()\n    .replace(/\\bSUN\\b/g,'0').replace(/\\bMON\\b/g,'1').replace(/\\bTUE\\b/g,'2')\n    .replace(/\\bWED\\b/g,'3').replace(/\\bTHU\\b/g,'4').replace(/\\bFRI\\b/g,'5')\n    .replace(/\\bSAT\\b/g,'6').replace(/\\b7\\b/g,'0');\n\n  const secOk  = matchPart(sec,  secE);\n  const minOk  = matchPart(min,  minE);\n  const hourOk = matchPart(hour, hourE);\n  const monOk  = matchPart(mon,  monE);\n  const domOk  = matchPart(day,  domE);\n  const dowOk  = matchPart(dow,  dowE);\n\n  // DOM 与 DOW 采用 OR 语义（标准 crontab 行为）\n  const domStar = String(domE).trim() === '*';\n  const dowStar = String(dowE).trim() === '*';\n  let dayOk;\n  if (!domStar && !dowStar) dayOk = domOk || dowOk;\n  else if (!domStar)        dayOk = domOk;\n  else if (!dowStar)        dayOk = dowOk;\n  else                      dayOk = true;\n\n  return secOk && minOk && hourOk && monOk && dayOk;\n}\n\n// ====== 从上游 Set 读取 cron/timezone ======\nconst cron = String($json.cron || '').trim();\nconst tz   = String($json.timezone || 'Asia/Shanghai').trim();\n\n// 严格模式：未配置 cron 就直接阻断，避免误发（如需放行，把 STRICT 改为 false）\nconst STRICT = true;\nif (!cron) {\n  if (STRICT) return [];      // 顶层 early return：阻断\n  // 非严格可放行：return [{ json: $json }];\n}\n\n// 命中才放行；不命中直接阻断\nif (!cronMatchNow(cron, tz)) {\n  return [];                  // 顶层 early return：阻断\n}\n\n// 通过 → 透传当前数据给后续节点\nreturn [{ json: $json }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -624,
+        208
+      ],
+      "id": "540fec46-a2d0-4dbe-b341-dc50260e98d5",
+      "name": "CN Workday Cache (Code)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// === Save Workday Cache (Code) ===\n// 把“今天的 t”写回 __cnDayTypes[ymd]，写 __cnDayMeta[ymd].fetchedAt，\n// 并写全局 __cnLastFetchedAt（兜底），返回 cache_debug。\n\nfunction getStatic(scope='global'){\n  try {\n    return typeof $getWorkflowStaticData === 'function'\n      ? $getWorkflowStaticData(scope)\n      : (this && this.getWorkflowStaticData ? this.getWorkflowStaticData(scope) : {});\n  } catch { return {}; }\n}\nfunction ymdInTZ(d, tz='Asia/Shanghai'){\n  return new Intl.DateTimeFormat('sv-SE', {\n    timeZone: tz, year:'numeric', month:'2-digit', day:'2-digit'\n  }).format(d);\n}\nfunction isWeekendCN(d=new Date()){\n  const w = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Shanghai', weekday:'short' }).format(d);\n  return (w === 'Sat' || w === 'Sun');\n}\nfunction readItemsJson(name) {\n  const arr = $items(name) || [];\n  return (arr[0] && arr[0].json) ? arr[0].json : null;\n}\n\nconst sd = getStatic('global');\nsd.__cnDayTypes = sd.__cnDayTypes || {}; // { 'YYYY-MM-DD': 0/1/2/3 }\nsd.__cnDayMeta  = sd.__cnDayMeta  || {}; // { 'YYYY-MM-DD': { fetchedAt } }\nsd.__cnYearMeta = sd.__cnYearMeta || {}; // { 'YYYY': { fetchedAt } }\nsd.__cnLastFetchedAt = sd.__cnLastFetchedAt || 0;\n\nconst nowTs = Date.now();\nconst ymd = $json.today_ymd || ymdInTZ(new Date());\nconst year = String($json.today_year || '').trim();\nconst nextYear = String($json.next_year || '').trim();\n\n// 兼容 3 种名字（— / - / 空格）\nconst yJson  = readItemsJson('Holiday CN (Y) – HTTP') || readItemsJson('Holiday CN (Y) - HTTP') || readItemsJson('Holiday CN (Y) HTTP');\nconst y1Json = readItemsJson('Holiday CN (Y+1) – HTTP') || readItemsJson('Holiday CN (Y+1) - HTTP') || readItemsJson('Holiday CN (Y+1) HTTP');\n\nfunction writeYear(yearStr, data){\n  if (!data || !Array.isArray(data.days)) return;\n  for (let i=0; i<data.days.length; i++){\n    const d = data.days[i];\n    const day = String(d.date || '').trim();\n    if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(day)) continue;\n    // isOffDay: true=2(节休)，false=3(调休上班)\n    sd.__cnDayTypes[day] = (d.isOffDay ? 2 : 3);\n  }\n  if (yearStr) sd.__cnYearMeta[yearStr] = { fetchedAt: nowTs };\n}\n\nif (yJson)  writeYear(year,     yJson);\nif (y1Json) writeYear(nextYear, y1Json);\n\n// 计算今天类型，年表没覆盖则按周末=1/工作日=0\nlet t = sd.__cnDayTypes[ymd];\nif (typeof t === 'undefined') t = isWeekendCN(new Date()) ? 1 : 0;\n\n// ★写今天的类型 & meta & 全局 lastFetchedAt\nsd.__cnDayTypes[ymd] = t;\nsd.__cnDayMeta[ymd]  = { fetchedAt: nowTs };\nsd.__cnLastFetchedAt = nowTs;\n\n// 可选：清理历史（~800天）\n(function prune(){\n  const keys = Object.keys(sd.__cnDayTypes).sort();\n  const cutoff = ymdInTZ(new Date(Date.now() - 800*24*3600*1000));\n  for (const k of keys) if (k < cutoff) delete sd.__cnDayTypes[k];\n})();\n\nreturn [{\n  json: {\n    ...$json,\n    today_type: t,\n    sd,\n    cache_debug: {\n      ymd,\n      years_cached: Object.keys(sd.__cnYearMeta || {}),\n      dayTypes_count: Object.keys(sd.__cnDayTypes || {}).length,\n      today_meta: sd.__cnDayMeta ? sd.__cnDayMeta[ymd] : null,\n      last_fetched_at: sd.__cnLastFetchedAt || null,\n      got_Y:  !!(yJson && Array.isArray(yJson.days)),\n      got_Y1: !!(y1Json && Array.isArray(y1Json.days))\n    }\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        304,
+        -32
+      ],
+      "id": "bf4a287b-6dd4-4831-8d0a-17f4a4514071",
+      "name": "Save Workday Cache (Code)"
+    },
+    {
+      "parameters": {
+        "url": "=https://fastly.jsdelivr.net/gh/NateScarlet/holiday-cn@master/{{$now.setZone('Asia/Shanghai').toFormat('yyyy')}}.json",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -192,
+        -32
+      ],
+      "id": "f7f62b9f-190a-4ca6-b6bf-6b5fe29e0e12",
+      "name": "Holiday CN (Y) – HTTP"
+    },
+    {
+      "parameters": {
+        "url": "=https://fastly.jsdelivr.net/gh/NateScarlet/holiday-cn@master/{{$now.setZone('Asia/Shanghai').plus({ years: 1 }).toFormat('yyyy')}}.json  ",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        -32
+      ],
+      "id": "7e0fde2f-03e3-46ae-9648-b0923887f029",
+      "name": "Holiday CN (Y+1) – HTTP"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\nfunction signUrl(base, secret) {\n  let url = String(base || '').trim();\n  const sec = String(secret || '').trim();\n  if (!sec) return url;\n  const ts = Date.now();\n  const sign = encodeURIComponent(crypto.createHmac('sha256', sec).update(ts + '\\n' + sec).digest('base64'));\n  url += (url.includes('?') ? '&' : '?') + `timestamp=${ts}&sign=${sign}`;\n  return url;\n}\nfunction parseJSON(str, defVal) { try { return JSON.parse(str); } catch { return defVal; } }\nfunction ensureKeyword(text, kw) { const k = String(kw || '').trim(); return k && !text.includes(k) ? `${k}\\n\\n${text}` : text; }\nfunction truthy(v){ return /^(1|true|yes|y)$/i.test(String(v || '').trim()); }\nfunction cleanUrl(u) { let v = String(u || '').trim(); if (!v) return ''; if (!/^https?:\\/\\//i.test(v) && !/^dingtalk:\\/\\//i.test(v)) v = 'https://' + v.replace(/^\\/+/, ''); v = v.replace(/ /g, '%20').replace(/\\(/g, '%28').replace(/\\)/g, '%29'); return v; }\nfunction replacePlaceholders(text, map) {\n  let out = String(text || '');\n  for (const [k, v] of Object.entries(map)) {\n    const s = String(v == null ? '' : v);\n    out = out.replace(new RegExp(`\\\\{\\\\{\\\\s*${k}\\\\s*\\\\}\\\\}`, 'g'), s)\n             .replace(new RegExp(`\\\\$\\\\{\\\\s*${k}\\\\s*\\\\}`, 'g'), s);\n  }\n  return out;\n}\nfunction dedent(md) {\n  const lines = String(md || '').replace(/\\r\\n?/g, '\\n').split('\\n');\n  const nonEmpty = lines.filter(l => l.trim().length);\n  const indent = nonEmpty.length ? Math.min(...nonEmpty.map(l => (l.match(/^[ \\t]*/)[0] || '').length)) : 0;\n  return lines.map(l => l.slice(indent)).join('\\n').trim();\n}\nfunction getFromSet(key, defVal) {\n  const fromSet = ($items(\"Cron: Config (Set)\")?.[0]?.json) || {};\n  const v1 = $json[key]; if (v1 !== undefined && v1 !== null && String(v1) !== '') return v1;\n  const v2 = fromSet[key]; if (v2 !== undefined && v2 !== null && String(v2) !== '') return v2;\n  return defVal;\n}\n// ---- cron guard (OR semantics) ----\n(function guardByCron(){\n  const cron = String(getFromSet('cron','') || '').trim();\n  if (!cron) return;\n  const tz = String(getFromSet('timezone','Asia/Shanghai'));\n  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: tz, weekday:'short', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });\n  const p = fmt.formatToParts(new Date());\n  const val = t => parseInt(p.find(x=>x.type===t).value, 10);\n  const sec=val('second'), min=val('minute'), hour=val('hour'), day=val('day'), mon=val('month');\n  const mapW={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}; const dow=mapW[p.find(x=>x.type==='weekday').value];\n  function matchPart(v, expr){\n    const tokens = String(expr).split(',');\n    for (const t of tokens){\n      if (t==='*') return true;\n      if (t.startsWith('*/')) { const step=parseInt(t.slice(2),10)||1; if ((v) % step === 0) return true; continue; }\n      if (t.includes('-')) { const [a,b]=t.split('-').map(n=>parseInt(n,10)); if (v>=a && v<=b) return true; continue; }\n      const n = parseInt(t,10); if (v===n) return true;\n    }\n    return false;\n  }\n  const parts = cron.split(/\\s+/).filter(Boolean);\n  const hasSec = parts.length===6;\n  const [secE,minE,hourE,domE,monE,dowE0] = hasSec ? parts : ['*',parts[0],parts[1],parts[2],parts[3],parts[4]];\n  const dowE = String(dowE0).toUpperCase().replace(/\\bSUN\\b/g,'0').replace(/\\bMON\\b/g,'1').replace(/\\bTUE\\b/g,'2').replace(/\\bWED\\b/g,'3').replace(/\\bTHU\\b/g,'4').replace(/\\bFRI\\b/g,'5').replace(/\\bSAT\\b/g,'6').replace(/\\b7\\b/g,'0');\n  const secOk  = matchPart(sec,secE);\n  const minOk  = matchPart(min,minE);\n  const hourOk = matchPart(hour,hourE);\n  const monOk  = matchPart(mon,monE);\n  const domOk  = matchPart(day,domE);\n  const dowOk  = matchPart(dow,dowE);\n  const domStar = String(domE).trim()==='*';\n  const dowStar = String(dowE).trim()==='*';\n  let dayOk;\n  if (!domStar && !dowStar) dayOk = (domOk || dowOk); else if (!domStar) dayOk = domOk; else if (!dowStar) dayOk = dowOk; else dayOk = true;\n  if (!(secOk && minOk && hourOk && monOk && dayOk)) return [];\n})();\n// ---- workday guard ----\nconst t = ($json.today_type !== undefined) ? $json.today_type : ($json.today_type_cached !== undefined ? $json.today_type_cached : undefined);\nif (t === 1 || t === 2) return [];\n\n// ---- build payload ----\nconst baseWebhook = getFromSet('dingtalk_webhook_url', '');\nconst secret      = getFromSet('dingtalk_secret', '');\nconst mdTitle     = getFromSet('md_title', '提交日志提醒');\nconst linkTitle   = getFromSet('link_title', '提交日志');\nconst linkUrl     = cleanUrl(getFromSet('link_url', ''));\nconst required    = getFromSet('required_keyword', '');\nconst atAll       = truthy(getFromSet('at_all', ''));\nconst atMobiles   = String(getFromSet('at_mobiles', '') || '').trim()\n  ? String(getFromSet('at_mobiles')).split(',').map(s => s.trim()).filter(Boolean)\n  : [];\nconst EMOJIS = parseJSON(getFromSet('random_emojis_json', ''), [\"💡\",\"📝\",\"✨\",\"⏰\",\"✅\",\"📌\",\"🚀\"]);\nconst QUOTES = parseJSON(getFromSet('random_quotes_json', ''), [\"再小的进步也是进步。\",\"把今天做到最好，明天自然会更好。\",\"先完成，再完美。\",\"复盘能让每一步都更值钱。\",\"专注当下这一件事。\"]);\nconst TIPS   = parseJSON(getFromSet('random_tips_json',   ''), [\"用要点和小标题写日志，可读性更好。\",\"同步 1 张关键截图，信息量翻倍。\",\"记录 1 条风险+应对，让复盘更顺畅。\",\"尽量量化结果：进度/耗时/影响。\"]);\nconst pickOne = a => a && a.length ? a[Math.floor(Math.random()*a.length)] : '';\nconst rndEmoji = pickOne(EMOJIS), rndQuote = pickOne(QUOTES), rndTip = pickOne(TIPS);\n\nconst tzShow = getFromSet('timezone', 'Asia/Shanghai');\nconst nowDisp = new Date();\nconst dateStr = new Intl.DateTimeFormat('ja-JP', { timeZone: tzShow, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' }).format(nowDisp);\nlet weekdayStr;\ntry { weekdayStr = new Intl.DateTimeFormat('zh-CN', { timeZone: tzShow, weekday:'long' }).format(nowDisp); }\ncatch {\n  const w = new Intl.DateTimeFormat('en-GB', { timeZone: tzShow, weekday:'short' }).format(nowDisp);\n  weekdayStr = ({Sun:'星期日',Mon:'星期一',Tue:'星期二',Wed:'星期三',Thu:'星期四',Fri:'星期五',Sat:'星期六'})[w] || w;\n}\n\nlet md = String(getFromSet('markdown', '') || '').trim();\nconst baseText = String(getFromSet('message', getFromSet('cron_message', '提醒：请在 18:00 前提交今日工作日志。')));\nconst map = { link_title:linkTitle, link_url:linkUrl, date:dateStr, weekday:weekdayStr, random_emoji:rndEmoji, random_quote:rndQuote, random_tip:rndTip, base:baseText };\nif (md) md = dedent(replacePlaceholders(md, map));\nelse md = [\n  `#### ${rndEmoji} 日志提醒 · ${dateStr}（${weekdayStr}）`,\n  `> ${rndQuote}`,\n  `- ${baseText}`,\n  `- 快捷入口： [${linkTitle}](${linkUrl})`,\n  `> Tip：${rndTip}`\n].join('\\n\\n');\n\nmd = ensureKeyword(md, required);\n\nconst payload = { msgtype:'markdown', markdown:{ title: mdTitle, text: md }, at:{ atMobiles, isAtAll: atAll } };\nconst signedWebhook = signUrl(baseWebhook, secret);\nreturn [{ json: { dingtalk_webhook: signedWebhook, payload } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        224
+      ],
+      "id": "de0a62cf-418b-4076-820f-e9876bca0544",
+      "name": "Build DingTalk Payload (Cron)"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Cron: Config (Set)": {
+      "main": [
+        [
+          {
+            "node": "CN Workday Cache (Code)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cron Ticker (Every Minute": {
+      "main": [
+        [
+          {
+            "node": "Cron: Config (Set)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cron Match? (Function)": {
+      "main": [
+        [
+          {
+            "node": "Build DingTalk Payload (Cron)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Holiday CN (Y) – HTTP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cron Match? (Function)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CN Workday Cache (Code)": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Workday Cache (Code)": {
+      "main": [
+        [
+          {
+            "node": "Cron Match? (Function)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Holiday CN (Y) – HTTP": {
+      "main": [
+        [
+          {
+            "node": "Holiday CN (Y+1) – HTTP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Holiday CN (Y+1) – HTTP": {
+      "main": [
+        [
+          {
+            "node": "Save Workday Cache (Code)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build DingTalk Payload (Cron)": {
+      "main": [
+        [
+          {
+            "node": "HTTP → DingTalk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "551e8cd8-7c51-4eef-a033-ac95d57fea2a",
+  "meta": {
+    "instanceId": "583343881ef1455d6c145f16bd207a300459d7b29b3c8edc12ffd7a73041bc67"
+  },
+  "id": "W34iX5MJ5FtPH2ug",
+  "tags": []
+}

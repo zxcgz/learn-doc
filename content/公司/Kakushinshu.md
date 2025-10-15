@@ -4,6 +4,12 @@ Shinshu(進取)-进取的
 
 GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器)
 
+next-enterprise + goframe
+
+vercel + cloudflare
+
+
+
 
 
 没问题！我把前面我们聊到的**所有工具**按类别做了个一览表，每个工具给出**定位、优点、缺点、适用场景**（并标注大致“资源量级”：轻/中/重，便于取舍）。

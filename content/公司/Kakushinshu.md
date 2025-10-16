@@ -12,7 +12,7 @@ vercel + cloudflare + sentry
 
 
 Grafana Cloud Logs（托管日志平台）
-
+Cloudflare R2（minio兼容协议）
 
 
 

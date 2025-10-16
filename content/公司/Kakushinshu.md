@@ -4,7 +4,7 @@ Shinshu(進取)-进取的
 
 GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器)
 
-next-enterprise + goframe
+next-enterprise /  next-forge+ goframe
 
 vercel + cloudflare
 

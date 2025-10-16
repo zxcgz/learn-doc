@@ -2,7 +2,7 @@ Kakushin(革新) - 创新
 Shinshu(進取)-进取的  
 
 
-GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器)
+GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器)+sentry(自部署)
 
 next-enterprise /  next-forge /Refine + goframe
 

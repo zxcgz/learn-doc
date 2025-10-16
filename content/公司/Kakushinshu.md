@@ -2,7 +2,7 @@ Kakushin(革新) - 创新
 Shinshu(進取)-进取的  
 
 
-GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器Fluent Bit采集器)+sentry(云)
+### 开发框架
 
 next-enterprise /  next-forge /Refine + goframe
 
@@ -17,6 +17,10 @@ Cloudflare R2（minio兼容协议）
 Sentry（托管）
 #### 自建
 pg+go+nginx+redis
+
+### 后期
+##### 全部自建
+GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器Fluent Bit采集器)+sentry(云)
 
 
 没问题！我把前面我们聊到的**所有工具**按类别做了个一览表，每个工具给出**定位、优点、缺点、适用场景**（并标注大致“资源量级”：轻/中/重，便于取舍）。

@@ -2,13 +2,13 @@ Kakushin(革新) - 创新
 Shinshu(進取)-进取的  
 
 
-GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器)+sentry(自部署)
+GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器)+sentry(云)
 
 next-enterprise /  next-forge /Refine + goframe
 
 next-enterprise+Refine+goframe实现前后端分离更简单，next-enterprise做应用，Refine做管理端
 
-vercel + cloudflare
+vercel + cloudflare + sentry
 
 
 

@@ -8,12 +8,15 @@ next-enterprise /  next-forge /Refine + goframe
 
 next-enterprise+Refine+goframe实现前后端分离更简单，next-enterprise做应用，Refine做管理端
 
+
+### 初期
+#### 托管
 vercel + cloudflare + sentry
-
-
 Grafana Cloud Logs（托管日志/监测平台）
 Cloudflare R2（minio兼容协议）
 Sentry（托管）
+#### 自建
+pg+go+nginx+redis
 
 
 没问题！我把前面我们聊到的**所有工具**按类别做了个一览表，每个工具给出**定位、优点、缺点、适用场景**（并标注大致“资源量级”：轻/中/重，便于取舍）。

@@ -6,6 +6,8 @@ GO+pg+minio+nginx+Netdata(系统监测)+OpenObserve(日志服务器)
 
 next-enterprise /  next-forge /Refine + goframe
 
+next-enterprise+Refine+goframe实现前后端分离更简单，next-enterprise做应用，Refine做管理端
+
 vercel + cloudflare
 
 
